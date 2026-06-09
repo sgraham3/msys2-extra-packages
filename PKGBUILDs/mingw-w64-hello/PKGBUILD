@@ -1,0 +1,20 @@
+pkgname=mingw-w64-x86_64-hello
+pkgver=1.0
+pkgrel=1
+pkgdesc="Simple hello program"
+arch=('x86_64')
+mingw_arch=('mingw64')
+url="https://example.com"
+license=('MIT')
+source=()
+depends=()
+
+build() {
+    echo '#include <stdio.h>' > hello.c
+    echo 'int main(){ printf("Hello MSYS2!\\n"); return 0; }' >> hello.c
+    gcc hello.c -o hello.exe
+}
+
+package() {
+    install -Dm755 hello.exe "$pkgdir/mingw64/bin/hello.exe"
+}
